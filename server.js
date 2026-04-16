@@ -15,21 +15,10 @@ const app        = express();
 const httpServer = http.createServer(app);
 initSocket(httpServer);
 
-// app.use(cors({
-//   origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://mentor-mentee-frontend-git-main-018vishnuteja-7545s-projects.vercel.app',
-//   credentials: true,
-// }));
-import cors from "cors";
-
-app.use(
-  cors({
-    origin: [
-      "https://mentor-mentee-frontend.vercel.app",
-      "https://mentor-mentee-frontend-git-main-01vishnuteja-7545s-projects.vercel.app"
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://mentor-mentee-frontend-git-main-018vishnuteja-7545s-projects.vercel.app',
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
