@@ -67,7 +67,7 @@ const seed = async () => {
     console.log('  🧑‍🏫 Mentor      → mentor@demo.com');
     console.log('  🎓 Mentee      → mentee@demo.com');
     console.log('─'.repeat(50));
-    console.log('\nAdmin login → http://localhost:3000/login');
+    //console.log('\nAdmin login → http://localhost:3000/login');
     console.log('After login → auto-redirected to /dashboard\n');
 
     process.exit(0);

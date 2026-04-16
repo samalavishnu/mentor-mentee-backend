@@ -8,7 +8,7 @@ const userSocketMap = {}; // userId -> socketId
 function initSocket(httpServer) {
   const io = new Server(httpServer, {
     cors: {
-      origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:3000',
+      origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://vercel.com/018vishnuteja-7545s-projects/mentor-mentee-frontend/6mwWWJEAHsxpgdpPgFcdsf9uu3Ti',
       credentials: true,
     },
   });
