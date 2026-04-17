@@ -16,7 +16,7 @@ const httpServer = http.createServer(app);
 initSocket(httpServer);
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://mentor-mentee-frontend-git-main-018vishnuteja-7545s-projects.vercel.app',
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://mentor-mentee-frontend.vercel.app',
   credentials: true,
 }));
 app.use(express.json());
