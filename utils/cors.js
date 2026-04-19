@@ -10,9 +10,8 @@ const allowedOrigins = Array.from(new Set([
 ]));
 
 const isAllowedOrigin = (origin) => (
-  !origin ||
   allowedOrigins.includes(origin) ||
-  /^https:\/\/mentor-mentee-frontend(?:-[a-z0-9-]+)?\.vercel\.app$/.test(origin)
+  /^https:\/\/mentor-mentee-frontend(?:-git-[a-z0-9-]+)?-018vishnuteja-7545s-projects\.vercel\.app$/.test(origin)
 );
 
 module.exports = { isAllowedOrigin };
