@@ -6,9 +6,26 @@ const Conversation = require('./models/Conversation');
 const userSocketMap = {}; // userId -> socketId
 
 function initSocket(httpServer) {
+  const envAllowedOrigins = [process.env.FRONTEND_URL, process.env.FRONTEND_URLS]
+    .filter(Boolean)
+    .flatMap((value) => value.split(','))
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const allowedOrigins = Array.from(new Set([
+    'https://mentor-mentee-frontend.vercel.app',
+    ...envAllowedOrigins,
+  ]));
+
+  const isAllowedOrigin = (origin) => (
+    !origin ||
+    allowedOrigins.includes(origin) ||
+    /^https:\/\/mentor-mentee-frontend(?:-[a-z0-9-]+)?\.vercel\.app$/.test(origin)
+  );
+
   const io = new Server(httpServer, {
     cors: {
-      origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://vercel.com/018vishnuteja-7545s-projects/mentor-mentee-frontend/6mwWWJEAHsxpgdpPgFcdsf9uu3Ti',
+      origin: (origin, callback) => callback(null, isAllowedOrigin(origin)),
       credentials: true,
     },
   });

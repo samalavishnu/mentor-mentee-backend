@@ -49,6 +49,7 @@ NODE_ENV=development
 PORT=5000
 JWT_SECRET=your_jwt_secret
 FRONTEND_URL=http://localhost:3000
+FRONTEND_URLS=http://localhost:3000,https://mentor-mentee-frontend.vercel.app
 ```
 
 > Note: The MongoDB connection is currently defined in `config/db.js`.
