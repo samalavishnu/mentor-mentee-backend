@@ -9,9 +9,23 @@ const allowedOrigins = Array.from(new Set([
   ...envAllowedOrigins,
 ]));
 
+const isAllowedVercelPreviewOrigin = (origin) => {
+  if (!origin) return false;
+  try {
+    const { protocol, hostname } = new URL(origin);
+    return (
+      protocol === 'https:' &&
+      hostname.startsWith('mentor-mentee-frontend-') &&
+      hostname.endsWith('-018vishnuteja-7545s-projects.vercel.app')
+    );
+  } catch {
+    return false;
+  }
+};
+
 const isAllowedOrigin = (origin) => (
-  allowedOrigins.includes(origin) ||
-  /^https:\/\/mentor-mentee-frontend(?:-git-[a-z0-9-]+)?-018vishnuteja-7545s-projects\.vercel\.app$/.test(origin)
+  Boolean(origin) &&
+  (allowedOrigins.includes(origin) || isAllowedVercelPreviewOrigin(origin))
 );
 
 module.exports = { isAllowedOrigin };
