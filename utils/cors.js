@@ -9,6 +9,8 @@ const allowedOrigins = Array.from(new Set([
   ...envAllowedOrigins,
 ]));
 
+const previewHostSuffix = process.env.VERCEL_PREVIEW_HOST_SUFFIX || '-018vishnuteja-7545s-projects.vercel.app';
+
 const isAllowedVercelPreviewOrigin = (origin) => {
   if (!origin) return false;
   try {
@@ -16,7 +18,7 @@ const isAllowedVercelPreviewOrigin = (origin) => {
     return (
       protocol === 'https:' &&
       hostname.startsWith('mentor-mentee-frontend-') &&
-      hostname.endsWith('-018vishnuteja-7545s-projects.vercel.app')
+      hostname.endsWith(previewHostSuffix)
     );
   } catch {
     return false;
