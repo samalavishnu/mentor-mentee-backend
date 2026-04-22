@@ -7,6 +7,7 @@ const morgan  = require('morgan');
 const connectDB  = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const initSocket = require('./socket');
+const { createCorsOriginValidator } = require('./utils/cors');
 
 dotenv.config();
 connectDB();
@@ -16,7 +17,7 @@ const httpServer = http.createServer(app);
 initSocket(httpServer);
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://mentor-mentee-frontend.vercel.apps/mentors',
+  origin: createCorsOriginValidator(),
   credentials: true,
 }));
 app.use(express.json());

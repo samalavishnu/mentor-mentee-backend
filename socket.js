@@ -2,13 +2,14 @@ const { Server } = require('socket.io');
 const jwt        = require('jsonwebtoken');
 const Message    = require('./models/Message');
 const Conversation = require('./models/Conversation');
+const { createCorsOriginValidator } = require('./utils/cors');
 
 const userSocketMap = {}; // userId -> socketId
 
 function initSocket(httpServer) {
   const io = new Server(httpServer, {
     cors: {
-      origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'https://vercel.com/018vishnuteja-7545s-projects/mentor-mentee-frontend/6mwWWJEAHsxpgdpPgFcdsf9uu3Ti',
+      origin: createCorsOriginValidator(),
       credentials: true,
     },
   });
